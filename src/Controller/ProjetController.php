@@ -47,28 +47,17 @@ class ProjetController extends AbstractController
 		
 		if (sizeof($reponse)>0)
 		{
-				$message="Bienvenue cher ";
+				$message="Bienvenue cher";
 				$erreur="MOT DE PASSE VALIDE";
 			
-			return $this->redirectToRoute('OuvertureDeSession', [ 'message' => "$message",  'login' => "$login", 'erreur' => "$erreur" ]);
+			return $this->render('login/PageAccueil.html.twig', [ 'message' => "$message",  'nom' => "$nom", 'erreur' => "$erreur" ]);
 		}
 		else{
-			$erreur="MOT DE PASSE OU LOGIN INCORRECT !!! ";
+			//$erreur="MOT DE PASSE OU LOGIN INCORRECT !!! ";
 			//Ne Pas oublier la modification d'ici
-			return $this->redirectToRoute('OuvertureDeSession', 'erreur' => "$erreur" ]);
+			return $this->render('projet/connexion.html.twig');
 		}
 	}
-	
-	//Route Gestion de Session
-	
-	/**
-     * @Route("OuvertureDeSession", name="OuvertureDeSession")
-     */
-    public function OuvertureDeSession(Request $request, EntityManagerInterface $manager, SessionInterface $session) : Response
-    {
-		
-        return $this->render('projet/PageAccueil.html.twig');
-    }
 	
 	
 	//Route formulaire pour ajouter un nouveau utilisateur
